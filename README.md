@@ -60,3 +60,7 @@ You can run the tasks with the gradlew command. For example, to run the flutterD
 ```sh
 ./gradlew flutterDoctor
 ```
+
+## Source Code
+
+The source code for this project is available on [Gitea](https://gitea.fahrecker.com/andreas-personal/flutter-gradle-plugin) and mirrored on [GitHub](https://github.com/andreas-fahrecker/flutter-gradle-plugin).
