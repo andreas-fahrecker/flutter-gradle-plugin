@@ -7,6 +7,7 @@
 
 plugins {
     id 'groovy'
+    id 'java-gradle-plugin'
     id 'maven-publish'
 }
 
@@ -19,5 +20,11 @@ gradlePlugin {
             id = 'com.fahrecker.flutterGradlePlugin'
             implementationClass = 'com.fahrecker.gradle.FlutterGradlePlugin'
         }
+    }
+}
+
+task printClasspath {
+    doLast {
+        configurations.runtimeClasspath.each { println it }
     }
 }
