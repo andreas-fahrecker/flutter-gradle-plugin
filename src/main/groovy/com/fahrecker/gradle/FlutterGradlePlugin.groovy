@@ -2,7 +2,6 @@ package com.fahrecker.gradle
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.provider.Property
 
 class FlutterGradlePlugin implements Plugin<Project> {
     void apply(Project project) {
