@@ -1,4 +1,5 @@
 *.code-workspace
+gradle.properties
 
 # Ignore Gradle project-specific cache directory
 .gradle

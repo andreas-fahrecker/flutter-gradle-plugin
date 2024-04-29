@@ -12,13 +12,33 @@ plugins {
 }
 
 group = 'com.fahrecker'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.7-SNAPSHOT'
 
 gradlePlugin {
     plugins {
         flutterPlugin {
             id = 'com.fahrecker.flutterGradlePlugin'
             implementationClass = 'com.fahrecker.gradle.FlutterGradlePlugin'
+        }
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "Gitea-FHN"
+            url = uri("https://gitea.fahrecker.com/api/packages/andreas-personal/maven")
+
+            def giteaToken = project.findProperty("giteaToken") ?: System.getenv("GITEA_TOKEN")
+
+            credentials(HttpHeaderCredentials) {
+                name = "Authorization"
+                value = "token ${giteaToken}"
+            }
+
+            authentication {
+                header(HttpHeaderAuthentication)
+            }
         }
     }
 }
