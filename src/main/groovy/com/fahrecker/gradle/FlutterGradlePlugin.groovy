@@ -25,6 +25,15 @@ class FlutterGradlePlugin implements Plugin<Project> {
             }
         }
 
+        project.task("flutterPubGet") {
+            group = "flutter"
+            doLast {
+                project.exec {
+                    commandLine flutterCommand("pub", "get")
+                }
+            }
+        }
+
         project.task("dartBuildRunner") {
             group = "flutter"
             doLast {
@@ -60,7 +69,7 @@ class FlutterGradlePlugin implements Plugin<Project> {
                 }
             }
         }
-
+        
         project.task("flutterRunChrome") {
             group = "flutter"
             doLast {
@@ -84,15 +93,6 @@ class FlutterGradlePlugin implements Plugin<Project> {
         String osName = System.getProperty('os.name').toLowerCase();
         if (osName.contains('windows')) {
             return ['cmd', '/c', 'dart'] + args.toList()
-        } else if (osName.contains('mac')) {
-            String dartPath = new ByteArrayOutputStream().withStream { os ->
-            exec {
-                commandLine 'which', 'dart'
-                standardOutput = os
-            }
-            os.toString().trim()
-            return [dartPath] + args.toList()
-        }
         } else {
             return ['dart'] + args.toList()
         }
@@ -102,14 +102,6 @@ class FlutterGradlePlugin implements Plugin<Project> {
         String osName = System.getProperty('os.name').toLowerCase();
         if (osName.contains('windows')) {
             return ['cmd', '/c', 'flutter'] + args.toList()
-        } else if (osName.contains('mac')) {
-            String flutterPath = new ByteArrayOutputStream().withStream { os ->
-            exec {
-                commandLine 'which', 'flutter'
-                standardOutput = os
-            }
-            os.toString().trim()
-            return [flutterPath] + args.toList()
         } else {
             return ['flutter'] + args.toList()
         }
